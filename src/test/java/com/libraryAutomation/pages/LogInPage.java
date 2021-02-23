@@ -1,5 +1,6 @@
 package com.libraryAutomation.pages;
 
+import com.libraryAutomation.utilities.BrowserUtils;
 import com.libraryAutomation.utilities.ConfigurationReader;
 import com.libraryAutomation.utilities.Driver;
 import org.openqa.selenium.Keys;
@@ -38,6 +39,7 @@ public class LogInPage {
         return Driver.getDriver().getTitle();
     }
     public String checkUrl() {
+        BrowserUtils.waitForPageToLoad(5);
         return Driver.getDriver().getCurrentUrl();
     }
 
@@ -45,6 +47,21 @@ public class LogInPage {
         emailInput.sendKeys(username);
         passwordInput.sendKeys(password, Keys.ENTER);
 
+    }
+
+    public void login(String role){
+        String username="";
+        String password = "";
+        if(role.equalsIgnoreCase("student")){
+            username=ConfigurationReader.getProperty("student");
+            password=ConfigurationReader.getProperty("passwordStudent");
+        }else if(role.equalsIgnoreCase("librarian")){
+            username=ConfigurationReader.getProperty("librarian");
+            password=ConfigurationReader.getProperty("passwordLibrarian");
+        }else{
+            throw new RuntimeException("Invalid role");
+        }
+        login(username,password);
     }
 
 

@@ -1,6 +1,9 @@
 package com.libraryAutomation.pages;
 
 import com.github.javafaker.Faker;
+import static com.libraryAutomation.utilities.BrowserUtils.*;
+
+import com.libraryAutomation.utilities.BrowserUtils;
 import com.libraryAutomation.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -24,9 +27,18 @@ public abstract class BasePage {
     @FindBy(xpath = "//input[@type='search']")
     private WebElement search;
 
+    @FindBy(xpath = "//h3")
+    private WebElement bookManagement;
+
+
+
 
     public BasePage(){
         PageFactory.initElements(Driver.getDriver(),this);
+    }
+
+    public WebElement getBookManagement() {
+        return bookManagement;
     }
 
     public void selectBookCategories(String genre){
@@ -47,12 +59,29 @@ public abstract class BasePage {
 
     }
 
+    public void logout(String username){
+        if(username.equalsIgnoreCase("student")){
+            waitForElementToBeClickable(userButton).click();
+
+            waitForElementToBeClickable(logOutButton);
+            logOutButton.click();
+        }else if(username.equalsIgnoreCase("librarian")){
+           waitForElementToBeClickable(userButton).click();
+
+           waitForElementToBeClickable(logOutButton).click();
+
+        }
+
+    }
+
     public void logout(){
-        userButton.click();
-        logOutButton.click();
+        BrowserUtils.waitForElementToBeClickable(userButton).click();
+
+        BrowserUtils.waitForElementToBeClickable(logOutButton).click();
+
     }
 
     public void searchInput(String txt){
-        search.sendKeys(txt,Keys.ENTER);
+        search.sendKeys(txt, Keys.ENTER);
     }
 }

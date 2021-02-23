@@ -1,6 +1,5 @@
 package com.libraryAutomation.step_definitions;
 
-import com.libraryAutomation.utilities.ConfigurationReader;
 import com.libraryAutomation.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -11,8 +10,10 @@ import org.openqa.selenium.TakesScreenshot;
 public class Hooks {
 
     @Before
-    public void setup(){
-        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
+    public void setup(Scenario scenario){
+
+        System.out.println(scenario.getName());
+        Driver.getDriver().manage().window().maximize();
     }
 
     @After

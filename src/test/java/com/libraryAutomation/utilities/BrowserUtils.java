@@ -97,15 +97,20 @@ public class BrowserUtils {
     }
 
 
-    public static void waitForElementToBoVisible(WebElement element){
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),15);
-        wait.until(ExpectedConditions.visibilityOf(element));
+    public static WebElement waitForElementToBoVisible(WebElement element){
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
+         return wait.until(ExpectedConditions.visibilityOf(element));
 
     }
 
-    public static void waitForElementToBeClickable(WebElement element){
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),10);
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    public static WebElement waitForElementToBeClickable(WebElement element){
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
+         return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    public static boolean waitForUrlToContain(String string){
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
+       return wait.until(ExpectedConditions.urlContains(string));
     }
 
 
