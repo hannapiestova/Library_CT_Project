@@ -29,7 +29,7 @@ public abstract class BasePage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-    public void selectBoobCategories(String genre){
+    public void selectBookCategories(String genre){
         Select categories = new Select(Driver.getDriver().findElement(By.id("book_categories")));
         categories.selectByVisibleText(genre);
     }

@@ -100,6 +100,7 @@ public class BrowserUtils {
     public static void waitForElementToBoVisible(WebElement element){
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(),15);
         wait.until(ExpectedConditions.visibilityOf(element));
+
     }
 
     public static void waitForElementToBeClickable(WebElement element){

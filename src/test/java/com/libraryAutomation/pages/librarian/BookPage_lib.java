@@ -61,6 +61,8 @@ public class BookPage_lib extends BasePage {
         Select select = new Select(Driver.getDriver().findElement(By.id("book_group_id")));
         select.selectByVisibleText(category);
 
+        saveChanges.click();
+
     }
 
 
