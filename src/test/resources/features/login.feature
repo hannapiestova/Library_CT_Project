@@ -1,5 +1,8 @@
-Feature: Library app login feature
-  As a user I should be able to login to the library app
-  Accounts are : student and librarian
+Feature: Login functionality
+   As a user, I should be able to login to the library app.
 
-  Scenario: user
+  Scenario: User login verification
+    Given user is on the login page
+    When user login as a <role>
+    Then user is on the <page>
+
