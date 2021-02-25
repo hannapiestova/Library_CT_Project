@@ -27,6 +27,8 @@ public class StudentBorrowingBooksStepDefenitions {
     @Then("the user shoulde see the following column names in a borrowing books table:")
     public void the_user_shoulde_see_the_following_column_names_in_a_borrowing_books_table(List<String> expected) {
         waitForElementToBoVisible(booksPage_stu.getBooksBtn());
+        System.out.println(expected);
+        System.out.println(borrowingBooksPage.borrowingBooksTabletInfo());
         Assert.assertEquals(borrowingBooksPage.borrowingBooksTabletInfo(),expected);
 
     }
