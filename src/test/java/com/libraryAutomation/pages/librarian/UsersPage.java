@@ -66,6 +66,9 @@ public class UsersPage extends BasePage {
     @FindBy(xpath = "//select[@id='user_groups']")
     private WebElement userGroups;
 
+    @FindBy(xpath = "//th")
+    private List<WebElement> tableName;
+
 
 
     public WebElement getUserManagementButton() {
@@ -230,6 +233,12 @@ public class UsersPage extends BasePage {
         Select selectStatus=new Select(Driver.getDriver().findElement(By.xpath("//select[@id='user_status']")));
         List<WebElement> statusWebElements=selectStatus.getOptions();
         return BrowserUtils.getElementsText(statusWebElements);
+    }
+
+    public List<String> getTableInfo(){
+        List<WebElement> defaultInfo =  new ArrayList<>(tableName);
+        return  getElementsText(defaultInfo);
+
     }
 
 
