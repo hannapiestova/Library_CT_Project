@@ -13,7 +13,7 @@ public class LibraryPage_lib extends BookPage_lib {
 
     public List<String> getTabs(){
 
-        List<WebElement> getTabs =  new ArrayList<>(Driver.getDriver().findElements(By.xpath("//ul[@id='menu_item']")));
+        List<WebElement> getTabs =  new ArrayList<>(Driver.getDriver().findElements(By.id("navbarCollapse")));
         return  BrowserUtils.getElementsText(getTabs);
 
     }
