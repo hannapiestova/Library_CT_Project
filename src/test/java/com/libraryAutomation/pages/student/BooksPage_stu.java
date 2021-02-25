@@ -41,7 +41,7 @@ public class BooksPage_stu extends BasePage {
     }
 
     public List<String> getDefaultInfo(){
-        List<WebElement> defaultInfo =  new ArrayList<>(Driver.getDriver().findElements(By.xpath("//thead/tr")));
+        List<WebElement> defaultInfo =  new ArrayList<>(Driver.getDriver().findElements(By.xpath("//*[@id='tbl_books']/thead/tr/th")));
         return  getElementsText(defaultInfo);
 
     }
