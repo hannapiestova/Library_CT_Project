@@ -18,12 +18,19 @@ public class DashboardPage extends BookPage_lib {
     @FindBy(xpath = "//li[@class='nav-item'][1]")
     private WebElement dashboardButton;
 
+    @FindBy(xpath = "(//a[@class='nav-link'])[2]")
+    private WebElement usersButton;
+
     public DashboardPage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
     public WebElement getDashboardButton() {
         return dashboardButton;
+    }
+
+    public void setUsersButtonClick(){
+        usersButton.click();
     }
 
     public List<String> getModules(){
