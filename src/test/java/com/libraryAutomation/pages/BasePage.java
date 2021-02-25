@@ -29,6 +29,7 @@ public abstract class BasePage {
 
     @FindBy(xpath = "//h3")
     private WebElement bookManagement;
+
     @FindBy(xpath = "//li[@class='nav-item'][1]")
     private WebElement dashboardButton;
 

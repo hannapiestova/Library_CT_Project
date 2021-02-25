@@ -42,8 +42,6 @@ public class ModulesStepDefinitions {
     public void librarian_should_see_following_modules(List<String> modules) {
 
         waitForElementToBoVisible(dashboardPage.getDashboardButton());
-        System.out.println(modules);
-        System.out.println(dashboardPage.getModules());
         Assert.assertEquals(modules,dashboardPage.getModules());
 
     }

@@ -34,6 +34,8 @@ public class BooksPage_stu extends BasePage {
         return booksBtn;
     }
 
+
+
     public List<String> getModules(){
         List<WebElement> getTabs =  new ArrayList<>(Driver.getDriver().findElements(By.xpath("//li[@class='nav-item']")));
         return  getElementsText(getTabs);

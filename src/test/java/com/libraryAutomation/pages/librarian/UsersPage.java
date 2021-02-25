@@ -11,6 +11,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UsersPage extends BasePage {
 
 
@@ -58,6 +61,10 @@ public class UsersPage extends BasePage {
 
     @FindBy(xpath = "//select[@id='status']")
     private WebElement selectStatus;
+
+    @FindBy(xpath = "//select[@id='user_groups']")
+    private WebElement userGroups;
+
 
 
     public WebElement getUserManagementButton() {
@@ -118,6 +125,17 @@ public class UsersPage extends BasePage {
 
     public WebElement getEndDate() {
         return endDate;
+    }
+
+    public WebElement getUserGroups() {
+        return userGroups;
+    }
+
+
+    public List<String> user_groups(){
+        Select groups = new Select(userGroups);
+        List<WebElement>getGroups = new ArrayList<>(groups.getOptions());
+        return getElementsText(getGroups);
     }
 
     public void editUser(String index){
