@@ -2,6 +2,8 @@ package com.libraryAutomation.step_definitions;
 
 import com.libraryAutomation.pages.LogInPage;
 import com.libraryAutomation.pages.student.BooksPage_stu;
+import static com.libraryAutomation.utilities.BrowserUtils.*;
+
 import com.libraryAutomation.utilities.BrowserUtils;
 import com.libraryAutomation.utilities.ConfigurationReader;
 import com.libraryAutomation.utilities.Driver;
@@ -32,8 +34,9 @@ public class SearchBooksStepDefinitions {
 
     @And("Student click on different categories")
     public void studentClickOnDifferentCategories() {
-        BrowserUtils.wait(2);
-        booksPage.bookCategories.click();
+
+        waitForElementToBeClickable(booksPage.bookCategories).click();
+
     }
 
     @Then("It should display all categories")
@@ -44,7 +47,7 @@ public class SearchBooksStepDefinitions {
 
 
     @Then("Student able to select any categories and search Books")
-    public void student_able_to_select_any_categories_and_search_books(List<String> listOfCategories) {
+    public void student_able_to_select_any_categories_and_search_books(List<String> listOfCategories)  {
        for( int i = 1; i < listOfCategories.size(); i++){
            selectedIndex.selectByIndex(i);
            BrowserUtils.wait(1);
