@@ -1,7 +1,7 @@
 Feature: Student borrowing books feature
   As a user, I should able to see my borrowing books.
 
-
+@wip @test
   Scenario: Scenario: borrowing books tabe columns names
 
     Given the student on the homepage

@@ -3,7 +3,7 @@ Feature: Modules verification
      As a user , I should be able to see several modules once I login
 
 
-  @modules_student
+@wip
      Scenario: Modules verification for student
        Given student is on the home page
        Then student should see following modules

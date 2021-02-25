@@ -1,7 +1,7 @@
 Feature: Tables Default Info
   As a students, I should be able to see tables with default info
 
-
+@wip
   Scenario: Table columns names
 
     Given the user on the homepage
