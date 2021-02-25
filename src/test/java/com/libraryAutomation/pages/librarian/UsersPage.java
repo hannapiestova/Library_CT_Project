@@ -8,13 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import static com.libraryAutomation.utilities.BrowserUtils.*;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class UsersPage extends BasePage {
-
 
 
     @FindBy(xpath = "//a[@class='btn btn-lg btn-outline btn-primary btn-sm']")
@@ -55,6 +50,39 @@ public class UsersPage extends BasePage {
 
     public WebElement getAddUser() {
         return addUser;
+    }
+    @FindBy(xpath = "//h3")
+    private WebElement userManagementButton;
+
+    @FindBy(id = "user_group_id")
+    private WebElement selectUser;
+
+    @FindBy(xpath = "//select[@id='status']")
+    private WebElement selectStatus;
+
+    @FindBy(xpath = "//select[@id='user_groups']")
+    private WebElement userGroups;
+
+
+
+    public WebElement getUserManagementButton() {
+        return userManagementButton;
+    }
+
+    public WebElement getAddUser() {
+        return addUser;
+    }
+
+    public WebElement getVerMsgEdit() {
+        return verMsgEdit;
+    }
+
+    public WebElement getVerMsgAddUser() {
+        return verMsgAddUser;
+    }
+
+    public WebElement getSelectUser() {
+        return selectUser;
     }
 
     public void editUser(String index,String user,String status){
@@ -113,32 +141,7 @@ public class UsersPage extends BasePage {
 
     }
 
-    public Integer recordsDefaultValue(){
-        Select showRecords=new Select(Driver.getDriver().findElement(By.xpath("//select[@name='tbl_users_length']")));
-        String defaultValue=showRecords.getFirstSelectedOption().getText();
-        Integer intDeaulValue=Integer.parseInt(defaultValue);
-        return intDeaulValue;
-    }
 
-    public List<String> showRecordsValue(){
-        Select showRecords=new Select(Driver.getDriver().findElement(By.xpath("//select[@name=\"tbl_users_length\"]")));
-
-        List<String> actualList=new ArrayList<>();
-        for(WebElement each:showRecords.getOptions()){
-            actualList.add(each.getText());
-        }
-        return getElementsText(showRecords.getOptions());
-    }
-
-    public void statusClick(){
-        statusDropDown.click();
-    }
-
-      public List<String> statusInfo(){
-      Select selectStatus=new Select(Driver.getDriver().findElement(By.xpath("//select[@id='user_status']")));
-       List<WebElement> statusWebElements=selectStatus.getOptions();
-       return BrowserUtils.getElementsText(statusWebElements);
-}
 
 
 

@@ -1,6 +1,7 @@
 package com.libraryAutomation.pages.librarian;
 
 import com.libraryAutomation.pages.BasePage;
+import com.libraryAutomation.utilities.BrowserUtils;
 import com.libraryAutomation.utilities.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -31,6 +32,10 @@ public class BookPage_lib extends BasePage {
     private WebElement description;
 
 
+    public String checkUrl() {
+        BrowserUtils.waitForPageToLoad(5);
+        return Driver.getDriver().getCurrentUrl();
+    }
 
 
     public void editBook(String index){
