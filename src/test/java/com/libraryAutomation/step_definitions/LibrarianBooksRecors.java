@@ -19,7 +19,7 @@ public class LibrarianBooksRecors {
     UsersPage usersPage=new UsersPage();
 
     @When("I click on \"Users\"link")
-    public void i_click_on_users_link() throws InterruptedException{
+    public void i_click_on_users_link() {
         logInPage.librarianLogin();
         waitForElementToBoVisible(dashboardPage.getDashboardButton());
         dashboardPage.setUsersButtonClick();
