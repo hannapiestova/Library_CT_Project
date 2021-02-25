@@ -15,6 +15,10 @@ import static com.libraryAutomation.utilities.BrowserUtils.getElementsText;
 
 public class DashboardPage extends BookPage_lib {
 
+    public WebElement getUsersButton() {
+        return usersButton;
+    }
+
     @FindBy(xpath = "//li[@class='nav-item'][1]")
     private WebElement dashboardButton;
 

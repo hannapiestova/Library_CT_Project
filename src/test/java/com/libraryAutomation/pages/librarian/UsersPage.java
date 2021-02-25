@@ -8,8 +8,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
+import static com.libraryAutomation.utilities.BrowserUtils.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsersPage extends BasePage {
+
 
 
     @FindBy(xpath = "//a[@class='btn btn-lg btn-outline btn-primary btn-sm']")
@@ -45,6 +50,9 @@ public class UsersPage extends BasePage {
     @FindBy(id = "end_date")
     private WebElement endDate;
 
+    public WebElement getAddUser() {
+        return addUser;
+    }
 
     public void editUser(String index,String user,String status){
         String xpath = "(//tr//td[1])["+index+"]";
@@ -100,6 +108,23 @@ public class UsersPage extends BasePage {
         saveChanges.click();
 
 
+    }
+
+    public Integer recordsDefaultValue(){
+        Select showRecords=new Select(Driver.getDriver().findElement(By.xpath("//select[@name='tbl_users_length']")));
+        String defaultValue=showRecords.getFirstSelectedOption().getText();
+        Integer intDeaulValue=Integer.parseInt(defaultValue);
+        return intDeaulValue;
+    }
+
+    public List<String> showRecordsValue(){
+        Select showRecords=new Select(Driver.getDriver().findElement(By.xpath("//select[@name=\"tbl_users_length\"]")));
+
+        List<String> actualList=new ArrayList<>();
+        for(WebElement each:showRecords.getOptions()){
+            actualList.add(each.getText());
+        }
+        return getElementsText(showRecords.getOptions());
     }
 
 

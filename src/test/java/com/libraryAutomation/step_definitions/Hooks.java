@@ -1,5 +1,6 @@
 package com.libraryAutomation.step_definitions;
 
+import com.libraryAutomation.utilities.ConfigurationReader;
 import com.libraryAutomation.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -13,6 +14,7 @@ public class Hooks {
     public void setup(Scenario scenario){
 
         System.out.println(scenario.getName());
+        Driver.getDriver().get(ConfigurationReader.getProperty("url"));
 
     }
 
