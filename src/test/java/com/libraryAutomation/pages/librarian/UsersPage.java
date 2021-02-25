@@ -48,9 +48,6 @@ public class UsersPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"user_status\"]")
     private WebElement statusDropDown;
 
-    public WebElement getAddUser() {
-        return addUser;
-    }
     @FindBy(xpath = "//h3")
     private WebElement userManagementButton;
 
