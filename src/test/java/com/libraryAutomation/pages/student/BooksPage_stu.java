@@ -33,6 +33,12 @@ public class BooksPage_stu extends BasePage {
     @FindBy(xpath = "//select[@name='tbl_users_length']")
     private WebElement records;
 
+    @FindBy(id = "book_categories")
+    public WebElement bookCategories;
+
+    @FindBy(xpath = "//*[@id=\"tbl_books\"]/tbody/tr[1]/td[5]")
+    public WebElement currentBookCategory;
+
     public WebElement getBooksBtn() {
         return booksBtn;
     }
