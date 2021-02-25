@@ -53,7 +53,9 @@ public abstract class BasePage {
 
     public void navigateTo(String tab){
         String locatorTab= "//span[@class='title' and text()='"+tab+"']";
+        BrowserUtils.wait(3);
         WebElement tabElement = Driver.getDriver().findElement(By.xpath(locatorTab));
+        BrowserUtils.wait(3);
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
         wait.until(ExpectedConditions.elementToBeClickable(tabElement)).click();
 

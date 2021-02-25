@@ -12,7 +12,7 @@ public class ConfigurationReader {
     //because we want the code that's inside to be executed before anything else
     static {
         try {
-            FileInputStream file = new FileInputStream("src/test/resources/proeprties/configuration.properties");
+            FileInputStream file = new FileInputStream("src/test/resources/properties/configuration.properties");
             properties.load(file);
             //closing the file in JVM memory
             file.close();

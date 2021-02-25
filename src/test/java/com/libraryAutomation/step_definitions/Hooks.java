@@ -13,7 +13,7 @@ public class Hooks {
     public void setup(Scenario scenario){
 
         System.out.println(scenario.getName());
-        Driver.getDriver().manage().window().maximize();
+
     }
 
     @After

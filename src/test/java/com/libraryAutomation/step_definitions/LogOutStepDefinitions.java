@@ -1,6 +1,5 @@
 package com.libraryAutomation.step_definitions;
 
-import com.libraryAutomation.pages.LogInPage;
 import com.libraryAutomation.pages.student.BooksPage_stu;
 import com.libraryAutomation.utilities.Driver;
 import io.cucumber.java.en.Then;
@@ -10,9 +9,9 @@ public class LogOutStepDefinitions {
     BooksPage_stu booksPage_stu = new BooksPage_stu();
 
     @Then("user logout as a {string}")
-    public void userLogoutAsA(String arg0) {
+    public void userLogoutAsA(String role) {
 
-        booksPage_stu.logout(arg0);
-        Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("login"));
+        booksPage_stu.logout(role);
+       Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("login"));
     }
 }

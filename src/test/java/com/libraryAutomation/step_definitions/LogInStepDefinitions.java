@@ -22,8 +22,6 @@ public class LogInStepDefinitions {
         Assert.assertTrue(Driver.getDriver().getCurrentUrl().contains("login"));
     }
 
-
-
     @When("user login as a {string}")
     public void user_login_as_a(String string) {
         logInPage.login(string);

@@ -17,9 +17,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LibraryPage_stu extends BasePage {
+public class BooksPage_stu extends BasePage {
 
-    public LibraryPage_stu(){
+    public BooksPage_stu(){
         PageFactory.initElements(Driver.getDriver(), this);
     }
 

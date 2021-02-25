@@ -2,10 +2,7 @@ package com.libraryAutomation.utilities;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -45,13 +42,13 @@ public class BrowserUtils {
     }
 
     public static List<String> getElementsText(List<WebElement> webElementList){
-        //Placeholder empty list of web element
+
         List<String> webElementsAsString = new ArrayList<>();
-        //Looping through list of web elements and storing text into placeholder list
+
+
         for (WebElement each : webElementList) {
             webElementsAsString.add(each.getText());
         }
-        //returning final List<String>
         return webElementsAsString;
     }
 
@@ -111,6 +108,11 @@ public class BrowserUtils {
     public static boolean waitForUrlToContain(String string){
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
        return wait.until(ExpectedConditions.urlContains(string));
+    }
+
+    public static List<WebElement> waitForElementsToBeVisible(List<WebElement> elements){
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
+        return wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
 
 
