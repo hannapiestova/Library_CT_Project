@@ -9,6 +9,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.libraryAutomation.utilities.BrowserUtils.*;
+import static com.libraryAutomation.utilities.BrowserUtils.waitForElementToBeClickable;
+
 public class UsersPage extends BasePage {
 
 
@@ -31,7 +37,10 @@ public class UsersPage extends BasePage {
     private WebElement saveChanges;
 
     @FindBy(xpath = "//*[text()='The user updated']")
-    private WebElement verMsg;
+    private WebElement verMsgEdit;
+
+    @FindBy(xpath = "//*[text()='The user has been created.']")
+    private WebElement verMsgAddUser;
 
     @FindBy(id = "start_date")
     private WebElement startDate;
@@ -45,16 +54,13 @@ public class UsersPage extends BasePage {
     @FindBy(id = "end_date")
     private WebElement endDate;
 
-    @FindBy(xpath = "//*[@id=\"user_status\"]")
-    private WebElement statusDropDown;
-
     @FindBy(xpath = "//h3")
     private WebElement userManagementButton;
 
     @FindBy(id = "user_group_id")
     private WebElement selectUser;
 
-    @FindBy(xpath = "//select[@id='status']")
+    @FindBy(xpath = "//select[@id='user_status']")
     private WebElement selectStatus;
 
     @FindBy(xpath = "//select[@id='user_groups']")
@@ -82,61 +88,150 @@ public class UsersPage extends BasePage {
         return selectUser;
     }
 
-    public void editUser(String index,String user,String status){
+    public WebElement getSelectStatus() {
+        return selectStatus;
+    }
+
+    public WebElement getFullName() {
+        return fullName;
+    }
+
+    public WebElement getPassword() {
+        return password;
+    }
+
+    public WebElement getEmail() {
+        return email;
+    }
+
+    public WebElement getAddress() {
+        return address;
+    }
+
+    public WebElement getSaveChanges() {
+        return saveChanges;
+    }
+
+    public WebElement getStartDate() {
+        return startDate;
+    }
+
+    public WebElement getToday() {
+        return today;
+    }
+
+    public WebElement getEndDateCalendar() {
+        return endDateCalendar;
+    }
+
+    public WebElement getEndDate() {
+        return endDate;
+    }
+
+    public WebElement getUserGroups() {
+        return userGroups;
+    }
+
+
+    public List<String> user_groups(){
+        Select groups = new Select(userGroups);
+        List<WebElement>getGroups = new ArrayList<>(groups.getOptions());
+        return getElementsText(getGroups);
+    }
+
+    public void editUser(String index){
         String xpath = "(//tr//td[1])["+index+"]";
+        waitForElementToBeClickable(userManagementButton);
         WebElement editButton = Driver.getDriver().findElement(By.xpath(xpath));
         editButton.click();
 
-        fullName.clear();
+        waitForElementToBoVisible(fullName).clear();
         fullName.sendKeys(faker.name().fullName());
 
-        password.clear();
+        waitForElementToBoVisible(password).clear();
         password.sendKeys(faker.internet().password());
 
-        email.clear();
+        waitForElementToBoVisible(email).clear();
         email.sendKeys(faker.internet().emailAddress());
 
-        saveChanges.click();
-
-        BrowserUtils.hover(verMsg);
-
-        Assert.assertTrue(verMsg.isDisplayed());
-
-
+        waitForElementToBoVisible(saveChanges).click();
 
     }
 
     public void addUser(String user , String status){
-        addUser.click();
 
-        fullName.clear();
+        waitForElementToBeClickable(fullName);
         fullName.sendKeys(faker.name().fullName());
 
-        password.clear();
-        password.sendKeys(faker.internet().password());
 
-        email.clear();
+        waitForElementToBeClickable(password).sendKeys(faker.internet().password());
+
+
+
+        waitForElementToBeClickable(email);
         email.sendKeys(faker.internet().emailAddress());
 
-        Select select = new Select(Driver.getDriver().findElement(By.id("user_group_id")));
+        Select select = new Select(selectUser);
         select.selectByVisibleText(user);
 
-        Select select1 = new Select(Driver.getDriver().findElement(By.id("status")));
+
+        Select select1 = new Select(selectStatus);
         select1.selectByVisibleText(status);
 
+        waitForElementToBeClickable(startDate);
         startDate.click();
+
+        waitForElementToBeClickable(today);
         today.click();
 
+        waitForElementToBeClickable(endDate);
         endDate.click();
+
+        waitForElementToBeClickable(endDateCalendar);
         endDateCalendar.click();
 
 
+        waitForElementToBeClickable(address);
         address.sendKeys(faker.address().fullAddress());
 
+        waitForElementToBeClickable(saveChanges);
         saveChanges.click();
 
 
     }
+
+    public String checkUrl() {
+        BrowserUtils.waitForPageToLoad(5);
+        return Driver.getDriver().getCurrentUrl();
+    }
+
+    public Integer recordsDefaultValue(){
+        Select showRecords=new Select(Driver.getDriver().findElement(By.xpath("//select[@name='tbl_users_length']")));
+        String defaultValue=showRecords.getFirstSelectedOption().getText();
+        Integer intDeaulValue=Integer.parseInt(defaultValue);
+        return intDeaulValue;
+    }
+
+    public List<String> showRecordsValue(){
+        Select showRecords=new Select(Driver.getDriver().findElement(By.xpath("//select[@name=\"tbl_users_length\"]")));
+
+        List<String> actualList=new ArrayList<>();
+        for(WebElement each:showRecords.getOptions()){
+            actualList.add(each.getText());
+        }
+        return getElementsText(showRecords.getOptions());
+    }
+
+    public void statusClick(){
+        selectStatus.click();
+    }
+
+    public List<String> statusInfo(){
+        Select selectStatus=new Select(Driver.getDriver().findElement(By.xpath("//select[@id='user_status']")));
+        List<WebElement> statusWebElements=selectStatus.getOptions();
+        return BrowserUtils.getElementsText(statusWebElements);
+    }
+
 
 
 
