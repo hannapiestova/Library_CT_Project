@@ -29,13 +29,15 @@ public abstract class BasePage {
 
     @FindBy(xpath = "//h3")
     private WebElement bookManagement;
-
-
+    @FindBy(xpath = "//li[@class='nav-item'][1]")
+    private WebElement dashboardButton;
 
 
     public BasePage(){
         PageFactory.initElements(Driver.getDriver(),this);
     }
+
+
 
     public WebElement getBookManagement() {
         return bookManagement;
@@ -53,11 +55,12 @@ public abstract class BasePage {
 
     public void navigateTo(String tab){
         String locatorTab= "//span[@class='title' and text()='"+tab+"']";
-        BrowserUtils.wait(3);
+
+        waitForElementToBoVisible(dashboardButton);
         WebElement tabElement = Driver.getDriver().findElement(By.xpath(locatorTab));
-        BrowserUtils.wait(3);
-        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
-        wait.until(ExpectedConditions.elementToBeClickable(tabElement)).click();
+
+        waitForElementToBeClickable(tabElement).click();
+
 
     }
 

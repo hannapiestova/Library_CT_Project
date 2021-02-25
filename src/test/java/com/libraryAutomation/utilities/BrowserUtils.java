@@ -90,7 +90,7 @@ public class BrowserUtils {
 
     public static void hover(WebElement element) {
         Actions actions = new Actions(Driver.getDriver());
-        actions.moveToElement(element).perform();
+       actions.moveToElement(element).perform();
     }
 
 
@@ -114,6 +114,22 @@ public class BrowserUtils {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
         return wait.until(ExpectedConditions.visibilityOfAllElements(elements));
     }
+
+    public static boolean waitForElementToBeSelected(WebElement element){
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
+        return wait.until(ExpectedConditions.elementToBeSelected(element));
+    }
+
+    public static WebElement waitForPresenceOfElement(String locator){
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
+       return wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
+    }
+
+    public static boolean waitForInvisibilityOf(WebElement element){
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(),20);
+       return wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
 
 
 
