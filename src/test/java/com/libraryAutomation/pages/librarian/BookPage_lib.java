@@ -1,6 +1,8 @@
 package com.libraryAutomation.pages.librarian;
 
 import com.libraryAutomation.pages.BasePage;
+import static com.libraryAutomation.utilities.BrowserUtils.*;
+
 import com.libraryAutomation.utilities.BrowserUtils;
 import com.libraryAutomation.utilities.Driver;
 import org.openqa.selenium.By;
@@ -13,7 +15,6 @@ import java.util.Date;
 
 public class BookPage_lib extends BasePage {
 
-  //  Faker faker = new Faker();
     @FindBy(xpath = "//input[@placeholder='Book Name']")
     private WebElement bookName;
     @FindBy(xpath = "//*[text()='The book has been updated.']")
@@ -33,7 +34,7 @@ public class BookPage_lib extends BasePage {
 
 
     public String checkUrl() {
-        BrowserUtils.waitForPageToLoad(5);
+        waitForPageToLoad(5);
         return Driver.getDriver().getCurrentUrl();
     }
 
