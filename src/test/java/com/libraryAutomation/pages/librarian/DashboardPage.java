@@ -65,4 +65,8 @@ public class DashboardPage extends BookPage_lib {
         List<WebElement> getRows =  new ArrayList<>(Driver.getDriver().findElements(By.xpath("(//tr[@role='row'])[1]")));
         return  BrowserUtils.getElementsText(getRows);
     }
+
+    public void usersBtnClick(){
+        usersButton.click();
+    }
 }

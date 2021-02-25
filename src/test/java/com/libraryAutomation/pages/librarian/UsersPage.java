@@ -50,6 +50,9 @@ public class UsersPage extends BasePage {
     @FindBy(id = "end_date")
     private WebElement endDate;
 
+    @FindBy(xpath = "//*[@id=\"user_status\"]")
+    private WebElement statusDropDown;
+
     public WebElement getAddUser() {
         return addUser;
     }
@@ -127,7 +130,15 @@ public class UsersPage extends BasePage {
         return getElementsText(showRecords.getOptions());
     }
 
+    public void statusClick(){
+        statusDropDown.click();
+    }
 
+      public List<String> statusInfo(){
+      Select selectStatus=new Select(Driver.getDriver().findElement(By.xpath("//select[@id='user_status']")));
+       List<WebElement> statusWebElements=selectStatus.getOptions();
+       return BrowserUtils.getElementsText(statusWebElements);
+}
 
 
 
