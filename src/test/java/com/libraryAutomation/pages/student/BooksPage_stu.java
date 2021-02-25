@@ -27,6 +27,9 @@ public class BooksPage_stu extends BasePage {
     @FindBy(xpath = "//li[@class='nav-item'][1]")
     private WebElement booksBtn;
 
+    @FindBy(xpath = "//span[.='Borrowing Books']")
+    private WebElement borrowingBooksBtn;
+
     @FindBy(xpath = "//select[@name='tbl_users_length']")
     private WebElement records;
 
@@ -81,5 +84,8 @@ public class BooksPage_stu extends BasePage {
 
     }
 
+    public void borrowingBooksBtnClick(){
+        borrowingBooksBtn.click();
+    }
 
 }
