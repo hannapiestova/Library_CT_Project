@@ -1,6 +1,7 @@
 package com.libraryAutomation.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -41,7 +42,8 @@ public class Driver {
                     try {
                         URL url = new URL("http://3.89.133.216:4444/wd/hub");
                         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                        desiredCapabilities.setBrowserName(BrowserType.FIREFOX);
+                        desiredCapabilities.setBrowserName(BrowserType.CHROME);
+                        desiredCapabilities.setPlatform(Platform.LINUX);
                         driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
                     }catch (Exception e ){
                         e.printStackTrace();
