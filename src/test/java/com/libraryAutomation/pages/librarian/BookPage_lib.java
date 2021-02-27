@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class BookPage_lib extends BasePage {
+public abstract class BookPage_lib extends BasePage {
 
     @FindBy(xpath = "//input[@placeholder='Book Name']")
     private WebElement bookName;

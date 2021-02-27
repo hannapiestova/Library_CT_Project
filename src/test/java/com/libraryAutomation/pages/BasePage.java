@@ -59,6 +59,8 @@ public abstract class BasePage {
 
         waitForElementToBoVisible(dashboardButton);
         WebElement tabElement = Driver.getDriver().findElement(By.xpath(locatorTab));
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 10);
+        wait.until(ExpectedConditions.elementToBeClickable(tabElement)).click();
 
         waitForElementToBeClickable(tabElement).click();
 
@@ -75,7 +77,7 @@ public abstract class BasePage {
            waitForElementToBeClickable(userButton).click();
 
            waitForElementToBeClickable(logOutButton).click();
-
+logOutButton.sendKeys(Keys.ENTER);
         }
 
     }

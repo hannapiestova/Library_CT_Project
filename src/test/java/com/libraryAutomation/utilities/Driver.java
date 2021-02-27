@@ -5,6 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.URL;
+import java.util.Locale;
 
 import java.util.Locale;
 
@@ -30,6 +36,17 @@ public class Driver {
         if(driverPool.get() ==null){
             String browser = ConfigurationReader.getProperty("browser").toLowerCase();
             switch (browser){
+
+                case "remote-chrome":
+                    try {
+                        URL url = new URL("http://3.89.133.216:4444/wd/hub");
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName(BrowserType.FIREFOX);
+                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                    }catch (Exception e ){
+                        e.printStackTrace();
+                    }
+
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();

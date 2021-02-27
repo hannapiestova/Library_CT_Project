@@ -15,6 +15,7 @@ import static com.libraryAutomation.utilities.BrowserUtils.getElementsText;
 
 public class DashboardPage extends BookPage_lib {
 
+        List<WebElement> getTabs =  new ArrayList<>(Driver.getDriver().findElements(By.xpath("//ul[@id='menu_item']")));
     public WebElement getUsersButton() {
         return usersButton;
     }
@@ -35,6 +36,7 @@ public class DashboardPage extends BookPage_lib {
 
     public void setUsersButtonClick(){
         usersButton.click();
+        System.out.println( Driver.getDriver().getClass().getSimpleName());
     }
 
     public List<String> getModules(){
