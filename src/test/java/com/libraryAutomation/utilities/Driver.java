@@ -20,7 +20,7 @@ public class Driver {
     private final static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
     //threadLocal class in java that creates a cope of an instance of thread
     //creates a copy of web driver object
-
+    private static ChromeOptions chromeOptions;
     /**
      * to make parallel testing possible , driver must be capable to handle multiple threads.
      * If driver just singelton, it cannot be in 3 places at the same time.
@@ -39,12 +39,10 @@ public class Driver {
             switch (browser){
 
                 case "remote-chrome":
+                    chromeOptions = new ChromeOptions();
                     try {
                         URL url = new URL("http://3.89.133.216:4444/wd/hub");
-                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                        desiredCapabilities.setBrowserName(BrowserType.CHROME);
-                        desiredCapabilities.setPlatform(Platform.LINUX);
-                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+                        driverPool.set(new RemoteWebDriver(url, chromeOptions));
                     }catch (Exception e ){
                         e.printStackTrace();
                     }
