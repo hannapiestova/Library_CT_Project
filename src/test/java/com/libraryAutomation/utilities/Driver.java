@@ -5,12 +5,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Locale;
 
 public class Driver {
 
     private final static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
+
+
     //threadLocal class in java that creates a cope of an instance of thread
     //creates a copy of web driver object
 

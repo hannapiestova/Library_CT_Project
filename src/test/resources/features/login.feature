@@ -1,4 +1,4 @@
-@login
+@smoke_test
 Feature: Login functionality
    As a user, I should be able to login to the library app.
 

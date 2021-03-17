@@ -1,4 +1,4 @@
-@add_user
+@smoke_test
 Feature: Librarian should be able to add and modify user from users page
   As a librarian , I should be able to add users from user page
 

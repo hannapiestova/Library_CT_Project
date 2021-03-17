@@ -38,8 +38,6 @@ public abstract class BasePage {
         PageFactory.initElements(Driver.getDriver(),this);
     }
 
-
-
     public WebElement getBookManagement() {
         return bookManagement;
     }

@@ -1,4 +1,4 @@
-@logout
+@smoke_test
 Feature: Logout feature
   As a user I should be able to logout from the library app
 
