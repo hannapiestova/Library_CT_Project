@@ -1,6 +1,7 @@
 package com.libraryAutomation.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -24,7 +25,7 @@ public class Driver {
      * to make parallel testing possible , driver must be capable to handle multiple threads.
      * If driver just singelton, it cannot be in 3 places at the same time.
      * To resolve this issue we made a webdriver object threadlocal
-     * It allows to create a cope of the object at the run time of every thread.
+     * It allows to create a copy of the object at the run time of every thread.
      * Also we need to make webdriver synchronized to prevent crash. so , 2 or more threads won't conflict
      */
 
@@ -34,8 +35,32 @@ public class Driver {
 
     public synchronized static WebDriver getDriver(){
         if(driverPool.get() ==null){
-            String browser = ConfigurationReader.getProperty("browser").toLowerCase();
+            String browser = ConfigurationReader.getProperty("remoteBrowser").toLowerCase();
             switch (browser){
+                case "remote-chrome":
+                    URL url = null;
+                    try {
+                        url = new URL("http://52.91.153.200:4444/wd/hub");
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName("chrome");
+                        desiredCapabilities.setPlatform(Platform.ANY);//can run on any platform(MAC,WINDOWS)
+                        driverPool.set(new RemoteWebDriver(url,desiredCapabilities));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "remote-firefox":
+                    URL url1 = null;
+                    try {
+                        url1 = new URL("http://252.91.153.200:4444/wd/hub");
+                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                        desiredCapabilities.setBrowserName("firefox");
+                        desiredCapabilities.setPlatform(Platform.ANY);
+                        driverPool.set(new RemoteWebDriver(url1,desiredCapabilities));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
